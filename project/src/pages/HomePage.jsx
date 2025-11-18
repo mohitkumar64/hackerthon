@@ -1,19 +1,10 @@
 import  './css/home.css'
+import { Navbar } from './Navbar';
 export function HomePage(){
     return(
         <>
-        <nav className="navbar">
-    <div className="logo">ZeroCode Automator</div>
-
-    <ul className="nav-links">
-        <li><a href="/" className="active">HomePage</a></li>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="automation">Automation</a></li>
-        <li><a href="/accessibilty">Accessibility</a></li>
-        <li><a href="extra">Extra Layout</a></li>
-        <li><a href="/login">LogOut</a></li>
-    </ul>
-  </nav>
+        <Navbar />
+  
 
   
   <section className="hero">

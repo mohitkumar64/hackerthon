@@ -12,8 +12,7 @@
 
 /* ====== Base ====== */
 *{
-    margin: 0;
-    padding: 0;
+   
     box-sizing:border-box;
     
 }
@@ -24,65 +23,10 @@
   color:white;
 }
 
-/* ===== NAVBAR ===== */
-.navbar{
-  background:#2d3c89;
-  padding:16px 32px;
-  position:sticky;
-  top:0; z-index:999;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  backdrop-filter:blur(10px);
-  box-shadow:0 4px 20px rgba(0,0,0,0.6);
-}
-
-.logo{
-  font-size:22px;
-  font-weight:700;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.logo-dot{
-  width:14px;height:14px;border-radius:4px;
-  background:linear-gradient(135deg,var(--accent),var(--accent-2));
-  box-shadow:0 0 10px rgba(0,234,255,0.4);
-}
-
-.nav-links{
-  list-style:none;
-  display:flex;
-  gap:35px;
-}
-
-.nav-links a{
-  text-decoration:none;
-  color:white;
-  font-size:16px;
-  position:relative;
-  transition:.3s;
-}
-
-
-.nav-links a:hover,
-.nav-links .active{
-  color:var(--accent);
-  text-shadow:0 0 8px var(--accent);
-}
-
-.nav-links a::after{
-  content:"";
-  height:2px;width:0%;
-  background:var(--accent);
-  position:absolute;left:0;bottom:-4px;
-  transition:.3s;
-}
-
-.nav-links a:hover::after,
-.nav-links .active::after{
-  width:100%;
+.btn-aut{
+  margin: 10px;
+  padding: 12px;
+  
 }
 
 

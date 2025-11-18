@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from './Navbar';
 import "./css/profile.css";
+import { useEffect } from "react";
+
 
 export function ProfilePage() {
   const navigate = useNavigate();
@@ -20,6 +22,41 @@ export function ProfilePage() {
     password: "",
     confirmPassword: "",
   });
+
+  async function handleSave(){
+    try {
+      const postData =  await axios.post("http://localhost:5000/profileData" , form , {withCredentials : true});
+      console.log(postData.data); 
+
+    } catch (error) {
+      console.log(error);
+      
+    }
+   
+  }
+
+ 
+useEffect(()=>{
+  console.log("h")
+const getData = async()=>{
+  let formdata = await axios.get("http://localhost:5000/profileData" , {withCredentials : true})
+  console.log(formdata.data.user);
+  setForm(formdata.data.user);
+ }
+  getData();
+
+  const getcookie = async()=>{
+    let cdata = await axios.get("http://localhost:5000/cookie" ,  {withCredentials : true})
+      console.log(cdata.data.email.email);
+      setForm({...form , email: cdata.data.email.email })
+      
+  }
+getcookie();
+
+},[])
+
+
+
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -113,7 +150,7 @@ export function ProfilePage() {
                     name="email"
                     type="email"
                     value={form.email}
-                    onChange={handleChange}
+                    
                     required
                   />
                 </div>
@@ -208,7 +245,7 @@ export function ProfilePage() {
               </div>
 
               <div className="actions">
-                <button type="submit" className="btn primary">Save Profile</button>
+                <button onClick={handleSave} className="btn primary">Save Profile</button>
                 <button
                   type="button"
                   className="btn ghost"

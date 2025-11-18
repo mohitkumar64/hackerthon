@@ -4,13 +4,14 @@ const connectDB = require('./Db/connectDB')
 const app = express();
 const PORT = 5000;
 const userModel = require('./models/user')
+const profileModel = require("./models/profileModel")
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 require('dotenv').config()
 
 app.use(
   cors({
-    origin: "http://localhost:5174",
+    origin: "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
     credentials: true,
@@ -39,10 +40,69 @@ function authMiddleware(req, res, next) {
         return res.status(401).json({ message: "Invalid token" });
     }
 }
-
+app.get('/cookie' , (req, res)=>{
+   console.log(req.cookies)
+    const token = req.cookies.token;
+    console.log(token); 
+    
+        const decoded = jwt.verify(token, "shhhh");
+       const email = decoded;
+        res.status(200).json({email})
+})
 app.get("/profile", authMiddleware, (req, res) => {
     res.json({ message: "ok", user: req.user });
 });
+
+app.get("/profileData" , async (req,res)=>{
+  console.log('hit profile');
+  
+  const token = req.cookies.token;
+  let email;
+  if(token){
+  const decoded = jwt.verify(token, "shhhh");
+  email = decoded.email;
+  console.log(email);
+  
+
+}
+ let user = await profileModel.findOne({email});
+ console.log(user )
+  if(!user) return res.status(404).json("error");
+  console.log("sucess sending data ")
+  res.status(200).json({user});
+
+})
+
+
+app.post("/profileData" , async (req,res)=>{
+  try {
+    console.log("data hit ");
+  const token = req.cookies.token;
+  let email;
+  if(token){
+  const decoded = jwt.verify(token, "shhhh");
+  email = decoded.email ;
+  console.log(`eamil ${email}`);
+
+  
+}
+  
+  const form = req.body;
+  console.log(form);
+  
+  let user = await profileModel.findOne({email});
+  if(!user) return res.status(404).json("error");
+
+  Object.assign(user , form)
+ await user.save(); 
+  console.log(user);
+  res.status(200).json("sucess");
+  } catch (error) {
+    console.log(error);
+    
+  }
+  
+} )
 
 
 
@@ -97,7 +157,10 @@ app.post("/register", async (req, res) => {
   const user = await userModel.create({
     email , password , username
   })  
-  console.log(user);
+  const profiledata = await profileModel.create({email});
+  console.log(profiledata);
+  
+  
   res.status(200).json("added");
   } catch (error) {
     console.log(error);

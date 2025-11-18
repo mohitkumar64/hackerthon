@@ -94,10 +94,10 @@ export default function Automation() {
       
       {/* LEFT SIDE — Buttons + iframe */}
       <div style={{ flex: 2 }}>
-        <button onClick={startRecording}>Start Recording</button>
-        <button onClick={stopRecording}>Stop Recording</button>
-        <button onClick={runAutomation}>Run Automation</button>
-        <button onClick={clearSteps}>Clear</button>
+        <button className="btn-aut bg-blue-500 border-[1px] border-white shadow-2xl shadow-blue-600/50 rounded-md" onClick={startRecording}>Start Recording</button>
+        <button className="btn-aut bg-blue-500 border-[1px] border-white shadow-2xl shadow-blue-600/50 rounded-md" onClick={stopRecording}>Stop Recording</button>
+        <button className="btn-aut bg-blue-500 border-[1px] border-white shadow-2xl shadow-blue-600/50 rounded-md" onClick={runAutomation}>Run Automation</button>
+        <button className="btn-aut bg-blue-500 border-[1px] border-white shadow-2xl shadow-blue-600/50 rounded-md" onClick={clearSteps}>Clear</button>
 
         <iframe
           ref={iframeRef}
