@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faculty Feedback Form</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        max-width: 650px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 0 18px rgba(0,0,0,0.08);
+        border: 1px solid #e5e5e5;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 10px;
+        color: #111;
+    }
+
+    p {
+        text-align: center;
+        color: #555;
+        font-size: 15px;
+    }
+
+    label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        padding: 12px;
+        margin-top: 6px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 15px;
+        outline: none;
+    }
+
+    textarea {
+        resize: vertical;
+        height: 100px;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 22px;
+        padding: 12px;
+        background: #0077b6;
+        border: none;
+        color: white;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background: #005f8d;
+    }
+
+    .success {
+        margin-top: 18px;
+        padding: 12px;
+        background: #d4f7d0;
+        border-left: 5px solid #28a745;
+        display: none;
+        color: #155724;
+        border-radius: 6px;
+    }
+
+    .error {
+        color: red;
+        font-size: 14px;
+        display: none;
+        margin-top: 6px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Faculty Feedback Form</h2>
+    <p>Please provide your honest feedback about the faculty</p>
+
+    <label>Faculty Name</label>
+    <input type="text" id="facultyName">
+    <div id="facultyNameErr" class="error">* Faculty name is required</div>
+
+    <label>Subject / Course</label>
+    <input type="text" id="subject">
+    <div id="subjectErr" class="error">* Subject name required</div>
+
+    <label>Teaching Quality</label>
+    <select id="teaching">
+        <option value="">Select rating</option>
+        <option>Excellent</option>
+        <option>Good</option>
+        <option>Average</option>
+        <option>Poor</option>
+    </select>
+    <div id="teachingErr" class="error">* Please select an option</div>
+
+    <label>Communication Skills</label>
+    <select id="communication">
+        <option value="">Select rating</option>
+        <option>Excellent</option>
+        <option>Good</option>
+        <option>Average</option>
+        <option>Poor</option>
+    </select>
+    <div id="communicationErr" class="error">* Please select an option</div>
+
+    <label>Punctuality</label>
+    <select id="punctuality">
+        <option value="">Select rating</option>
+        <option>Excellent</option>
+        <option>Good</option>
+        <option>Average</option>
+        <option>Poor</option>
+    </select>
+    <div id="punctualityErr" class="error">* Please select an option</div>
+
+    <label>Behavior to Students</label>
+    <select id="behavior">
+        <option value="">Select rating</option>
+        <option>Excellent</option>
+        <option>Good</option>
+        <option>Average</option>
+        <option>Poor</option>
+    </select>
+    <div id="behaviorErr" class="error">* Please select an option</div>
+
+    <label>Overall Rating</label>
+    <select id="overall">
+        <option value="">Select rating</option>
+        <option>5 - Outstanding</option>
+        <option>4 - Very Good</option>
+        <option>3 - Good</option>
+        <option>2 - Average</option>
+        <option>1 - Poor</option>
+    </select>
+    <div id="overallErr" class="error">* Please select an option</div>
+
+    <label>Suggestions / Feedback</label>
+    <textarea id="suggestion" placeholder="Write your suggestions..."></textarea>
+    <div id="suggestionErr" class="error">* Please write something</div>
+
+    <button onclick="submitFeedback()">Submit Feedback</button>
+
+    <div class="success" id="successMsg">
+        ✔ Thank you! Your faculty feedback has been submitted.
+    </div>
+</div>
+
+<script>
+function submitFeedback() {
+    const facultyName = document.getElementById("facultyName").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const teaching = document.getElementById("teaching").value;
+    const communication = document.getElementById("communication").value;
+    const punctuality = document.getElementById("punctuality").value;
+    const behavior = document.getElementById("behavior").value;
+    const overall = document.getElementById("overall").value;
+    const suggestion = document.getElementById("suggestion").value.trim();
+
+    let error = false;
+
+    document.querySelectorAll(".error").forEach(e => e.style.display = "none");
+
+    if (!facultyName) { document.getElementById("facultyNameErr").style.display = "block"; error = true; }
+    if (!subject) { document.getElementById("subjectErr").style.display = "block"; error = true; }
+    if (!teaching) { document.getElementById("teachingErr").style.display = "block"; error = true; }
+    if (!communication) { document.getElementById("communicationErr").style.display = "block"; error = true; }
+    if (!punctuality) { document.getElementById("punctualityErr").style.display = "block"; error = true; }
+    if (!behavior) { document.getElementById("behaviorErr").style.display = "block"; error = true; }
+    if (!overall) { document.getElementById("overallErr").style.display = "block"; error = true; }
+    if (suggestion.length < 5) { document.getElementById("suggestionErr").style.display = "block"; error = true; }
+
+    if (error) return;
+
+    document.getElementById("successMsg").style.display = "block";
+
+    document.querySelectorAll("input, select, textarea").forEach(el => el.value = "");
+}
+</script>
+
+</body>
+</html>

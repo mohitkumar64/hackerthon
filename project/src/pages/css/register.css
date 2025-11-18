@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+}
+
+/* Navbar */
+
+
+/* Form */
+.form-container {
+  width: 350px;
+  background: #fff;
+  padding: 25px;
+  margin: 80px auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.form-container h2 {
+  text-align: center;
+}
+
+.form-container input {
+  width: 95%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+}
+
+.form-container button {
+  width: 100%;
+  padding: 12px;
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.form-container button:hover {
+  background: #333;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 80px;
+}
+
+.page-content {
+  padding: 40px;
+}
