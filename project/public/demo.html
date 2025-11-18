@@ -162,7 +162,7 @@
     <textarea id="suggestion" placeholder="Write your suggestions..."></textarea>
     <div id="suggestionErr" class="error">* Please write something</div>
 
-    <button onclick="submitFeedback()">Submit Feedback</button>
+    <button id="submitBtn" onclick="submitFeedback()">Submit Feedback</button>
 
     <div class="success" id="successMsg">
         ✔ Thank you! Your faculty feedback has been submitted.
@@ -197,6 +197,30 @@ function submitFeedback() {
 
     document.getElementById("successMsg").style.display = "block";
 
+    const formData = {
+      facultyName,
+      subject,
+      teaching,
+      communication,
+      punctuality,
+      behavior,
+      overall,
+      suggestion
+    };
+
+    // 🔥 Send form data to the parent React app
+    window.parent.postMessage(
+      {
+        type: "IFRAME_FORM_SUBMIT",
+        payload: {
+          data: formData,
+          time: new Date().toISOString()
+        }
+      },
+      "*"
+    );
+
+    // Clear form
     document.querySelectorAll("input, select, textarea").forEach(el => el.value = "");
 }
 </script>

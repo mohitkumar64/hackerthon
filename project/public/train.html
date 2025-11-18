@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Train Ticket Booking</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        max-width: 650px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 0 18px rgba(0,0,0,0.08);
+        border: 1px solid #e5e5e5;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 10px;
+        color: #111;
+    }
+
+    p {
+        text-align: center;
+        color: #555;
+        font-size: 15px;
+    }
+
+    label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        padding: 12px;
+        margin-top: 6px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 15px;
+        outline: none;
+    }
+
+    textarea {
+        resize: vertical;
+        height: 80px;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 22px;
+        padding: 12px;
+        background: #0077b6;
+        border: none;
+        color: white;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background: #005f8d;
+    }
+
+    .success {
+        margin-top: 18px;
+        padding: 12px;
+        background: #d4f7d0;
+        border-left: 5px solid #28a745;
+        display: none;
+        color: #155724;
+        border-radius: 6px;
+    }
+
+    .error {
+        color: red;
+        font-size: 14px;
+        display: none;
+        margin-top: 6px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Train Ticket Reservation</h2>
+    <p>Fill the details to book your train ticket</p>
+
+    <label>Passenger Name</label>
+    <input type="text" id="passengerName">
+    <div id="passengerNameErr" class="error">* Passenger name is required</div>
+
+    <label>From</label>
+    <input type="text" id="fromStation">
+    <div id="fromStationErr" class="error">* From station is required</div>
+
+    <label>To</label>
+    <input type="text" id="toStation">
+    <div id="toStationErr" class="error">* To station is required</div>
+
+    <label>Date of Journey</label>
+    <input type="date" id="journeyDate">
+    <div id="journeyDateErr" class="error">* Please select a valid date</div>
+
+    <label>Class</label>
+    <select id="trainClass">
+        <option value="">Select class</option>
+        <option>AC First Class</option>
+        <option>AC 2 Tier</option>
+        <option>AC 3 Tier</option>
+        <option>Sleeper</option>
+        <option>General</option>
+    </select>
+    <div id="trainClassErr" class="error">* Please choose a class</div>
+
+    <label>Additional Notes</label>
+    <textarea id="notes" placeholder="Optional"></textarea>
+
+    <button id="submitBtn" onclick="submitTicket()">Book Ticket</button>
+
+    <div class="success" id="successMsg">
+        ✔ Your ticket request has been submitted!
+    </div>
+</div>
+
+<script>
+function submitTicket() {
+    const passengerName = document.getElementById("passengerName").value.trim();
+    const fromStation = document.getElementById("fromStation").value.trim();
+    const toStation = document.getElementById("toStation").value.trim();
+    const journeyDate = document.getElementById("journeyDate").value;
+    const trainClass = document.getElementById("trainClass").value;
+    const notes = document.getElementById("notes").value.trim();
+
+    let error = false;
+    document.querySelectorAll(".error").forEach(e => e.style.display = "none");
+
+    if (!passengerName) { document.getElementById("passengerNameErr").style.display = "block"; error = true; }
+    if (!fromStation) { document.getElementById("fromStationErr").style.display = "block"; error = true; }
+    if (!toStation) { document.getElementById("toStationErr").style.display = "block"; error = true; }
+    if (!journeyDate) { document.getElementById("journeyDateErr").style.display = "block"; error = true; }
+    if (!trainClass) { document.getElementById("trainClassErr").style.display = "block"; error = true; }
+
+    if (error) return;
+
+    document.getElementById("successMsg").style.display = "block";
+
+    const formData = {
+      passengerName,
+      fromStation,
+      toStation,
+      journeyDate,
+      trainClass,
+      notes
+    };
+
+    // Send to parent React
+    window.parent.postMessage(
+      {
+        type: "IFRAME_FORM_SUBMIT",
+        payload: {
+          data: formData,
+          time: new Date().toISOString()
+        }
+      },
+      "*"
+    );
+
+    // Clear form
+    document.querySelectorAll("input, select, textarea").forEach(el => el.value = "");
+}
+</script>
+
+</body>
+</html>

@@ -4,6 +4,8 @@ const connectDB = require('./Db/connectDB')
 const app = express();
 const PORT = 5000;
 const userModel = require('./models/user')
+const UserSubmissions = require('./models/formsModel')
+
 const profileModel = require("./models/profileModel")
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
@@ -51,6 +53,53 @@ app.get('/cookie' , (req, res)=>{
 })
 app.get("/profile", authMiddleware, (req, res) => {
     res.json({ message: "ok", user: req.user });
+});
+
+app.post("/save-form", async (req, res) => {
+  try {
+     
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ success: false, message: "Not logged in" });
+    }
+
+    // 2️⃣ Decode JWT to get email
+    const decoded = jwt.verify(token, "shhhh");
+
+    // Your token should contain { email: "x@gmail.com" }
+    const email = decoded.email;
+    if (!email) {
+      return res.status(400).json({ success: false, message: "Invalid token (no email)" });
+    }
+
+    // 3️⃣ Extract form data sent from frontend
+    const formData = req.body.data;   // ⬅ FIXED (your code sends it inside "data")
+    if (!formData) {
+      return res.status(400).json({ success: false, message: "No form data received" });
+    }
+
+    // 4️⃣ Find user or create new one
+    let user = await UserSubmissions.findOne({ email });
+
+    if (!user) {
+      // New user entry
+      user = await UserSubmissions.create({
+        email,
+        submissions: [{ data: formData }]
+      });
+    } else {
+      // Existing user → push submission
+      user.submissions.push({ data: formData });
+      await user.save();
+    }
+
+    // 5️⃣ Response
+    res.json({ success: true, message: "Form saved", user });
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ success: false, error: err.message });
+  }
 });
 
 app.get("/profileData" , async (req,res)=>{
