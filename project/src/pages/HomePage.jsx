@@ -8,14 +8,14 @@ export function HomePage(){
   
 
   
-  <section className="hero">
+  <section className="hero ">
     <div id="Service">
     <div id="content">
     <h1>Zero-Code Web Automation for Digital Accessibility</h1>
-    <p className="tagline">
+    <span className="tagline text-center text-white">
       Empowering non-technical users by enabling them to automate online tasks  
-      (forms, alerts, workflows) while meeting global accessibility standards.
-    </p>
+      (forms, alerts, workflows) 
+    </span>
 
     <button className="cta-btn" onclick="scrollToSection('get-started')">
       Start Building Automation →

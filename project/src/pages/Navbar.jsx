@@ -2,8 +2,8 @@ import './nav.css'
 export function Navbar(){
     return(
          <nav className="navbar">
-        <div className="logo">ZeroCode Automator</div>
-        <ul className="nav-links">
+        <div className="logo">Automator</div>
+        <ul className="nav-links" style={{color : "white"}}>
           <li><a href="/">HomePage</a></li>
           <li><a href="/profile">Profile</a></li>
           <li><a href="/automation">Auto Form</a></li>

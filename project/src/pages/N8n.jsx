@@ -85,7 +85,7 @@ export function N8n() {
           <CardN1 title="Tweet 2" text={data["Tweet2"]} />
           <CardN1 title="Tweet 3" text={data["Tweet3"]} />
 
-          <CardN1 title="LinkedIn Post" text={data["LinkdedIn Post"]} />
+          <CardN1 title="Email Summary" text={data["Email Summary"]} />
 
           <CardN1
             title="Blog URL"
