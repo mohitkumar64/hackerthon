@@ -22,7 +22,7 @@ export function Register() {
       <Navbar />
 
     <div class="form-container">
-        <h2>Create Account</h2>
+        <h2 className='text-3xl font-bold'>Create Account</h2>
 
         <form>
             <input type="text" onChange={(e)=>{

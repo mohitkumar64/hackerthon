@@ -1,5 +1,21 @@
 .btn-aut{
   margin: 10px;
   padding: 12px;
-  
+  background: #7ca9f7;
+  transition: all .3s ease;
+}
+
+.btn-aut:hover{
+  cursor: pointer;
+  background: #2b7efa;
+  transform: scale(1.05);
+}
+
+.btn-aut1{
+    background: green;
+    transition: all .3s ease;
+}
+
+.btn-aut1:hover{
+  background: rgb(16, 155, 16);
 }

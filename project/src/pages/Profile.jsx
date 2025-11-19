@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Navbar } from './Navbar';
 import "./css/profile.css";
 import { useEffect } from "react";
+import dayjs from 'dayjs'
 
 
 export function ProfilePage() {
@@ -85,7 +86,7 @@ getcookie();
       <Navbar />
 
       <section className="small-hero">
-        <h1>Your Profile</h1>
+        <h1 className="text-3xl font-bold">Your Profile</h1>
         <p>Update your personal information used by Zero-Code Automator.</p>
       </section>
 
@@ -94,7 +95,7 @@ getcookie();
           <div className="left">
             <div className="avatar">
               <img
-                src="https://via.placeholder.com/400x400.png?text=Profile"
+                src="https://cdn-icons-png.flaticon.com/512/8847/8847419.png"
                 alt="Profile"
               />
             </div>
@@ -108,7 +109,7 @@ getcookie();
             </div>
 
             <div className="user-meta">
-              <strong>Your Name</strong>
+              <strong>{form.fullName}</strong>
               <div className="note">Member since 2025</div>
             </div>
 
@@ -119,7 +120,7 @@ getcookie();
           </div>
 
           <div className="right">
-            <h2>Account Information</h2>
+            <h2 className="text-2xl font-bold">Account Information</h2>
 
             <form onSubmit={handleSubmit}>
               <div className="row spaced">
@@ -181,7 +182,7 @@ getcookie();
                   <input
                     name="dob"
                     type="date"
-                    value={form.dob}
+                    value={dayjs(form.dob).format("YYYY-MM-DD")}
                     onChange={handleChange}
                   />
                 </div>

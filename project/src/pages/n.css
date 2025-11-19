@@ -43,6 +43,31 @@
   margin-bottom: 12px;
   color: #333;
 }
+.n1-loading-container {
+  margin-top: 150px;
+  text-align: center;
+}
+
+.n1-trigger-btn {
+  margin-top: 20px;
+  padding: 14px 24px;
+  background: #007bff;
+  color: white;
+  font-size: 17px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.n1-trigger-btn:hover {
+  background: #0058cc;
+}
+
+.n1-trigger-btn:disabled {
+  background: #7aa7e6;
+  cursor: not-allowed;
+}
+
 
 /* text */
 .n1-card-text {

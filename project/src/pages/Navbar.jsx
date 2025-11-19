@@ -6,8 +6,8 @@ export function Navbar(){
         <ul className="nav-links">
           <li><a href="/">HomePage</a></li>
           <li><a href="/profile">Profile</a></li>
-          <li><a href="/automation">Automation</a></li>
-          <li><a href="/accessibility">Accessibility</a></li>
+          <li><a href="/automation">Auto Form</a></li>
+          <li><a href="/accessibility">Automation</a></li>
           <li>
             {/* <a href="/login" className="active login">   Login
             </a>*/}

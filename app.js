@@ -1,12 +1,11 @@
-// ====================================================
-//  BASIC SETUP
-// ====================================================
+
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./Db/connectDB');
 const app = express();
 const PORT = 5000;
 let data;
+const axios = require("axios")
 const userModel = require('./models/user');
 const UserSubmissions = require('./models/formsModel');
 const profileModel = require("./models/profileModel");
@@ -31,9 +30,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 
-// ====================================================
-//  AUTH MIDDLEWARE
-// ====================================================
+
 function authMiddleware(req, res, next) {
   const token = req.cookies.token;
   if (!token) return res.status(401).json({ message: "authenticated" });
@@ -48,9 +45,7 @@ function authMiddleware(req, res, next) {
 }
 
 
-// ====================================================
-//  ROUTES (YOUR ORIGINAL CODE)
-// ====================================================
+
 
 app.get('/cookie', (req, res) => {
   const token = req.cookies.token;
@@ -200,7 +195,24 @@ app.post("/post",(req,res)=>{
   
 })
 
+app.get("/trigger", async (req, res) => {
+  console.log('hit');
+  
+  try {
+    await axios.post("https://mohitkumar232.app.n8n.cloud/webhook/run-from-backend ", {
+      triggeredBy: "frontend"
+    });
+
+    res.json({ success: true, message: "Workflow triggered" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Unable to trigger workflow" });
+  }
+});
+
 app.get('/getauto' , (req,res)=>{
+  console.log('ht');
+  
     res.status(200).json({data});
 })
 

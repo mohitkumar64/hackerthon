@@ -296,7 +296,7 @@ export default function Automation() {
             }}
           >
             <button
-              className="btn-aut bg-green-600 text-white px-4 py-2 rounded"
+              className="btn-aut btn-aut1 bg-green-600 text-white px-4 py-2 rounded"
               onClick={() => {
                 setTemplate("/demo.html");
                 clearSteps();
@@ -306,7 +306,7 @@ export default function Automation() {
             </button>
 
             <button
-              className="btn-aut bg-green-600 text-white px-4 py-2 rounded"
+              className="btn-aut1 btn-aut bg-green-600 text-white px-4 py-2 rounded"
               onClick={() => {
                 setTemplate("/train.html");
                 clearSteps();

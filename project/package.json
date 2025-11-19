@@ -13,6 +13,7 @@
     "@lottiefiles/dotlottie-react": "^0.17.7",
     "@tailwindcss/vite": "^4.1.17",
     "axios": "^1.13.2",
+    "dayjs": "^1.11.19",
     "lottie-react": "^2.4.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

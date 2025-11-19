@@ -51,7 +51,7 @@ export function Login() {
       <Navbar />
 
       <div className="form-container">
-        <h2>Login</h2>
+        <h2 className='text-3xl font-bold'>Login</h2>
 
         <form >
           <input onChange={(e)=>{
@@ -63,7 +63,7 @@ export function Login() {
           <button onClick={handleClick} >Login</button>
         </form>
 
-        <p>
+        <p style={{margin_top : "9px"}}>
           Don't have an account? <a href="/register">Register</a>
         </p>
       </div>
