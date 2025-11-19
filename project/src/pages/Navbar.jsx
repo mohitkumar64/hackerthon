@@ -9,9 +9,9 @@ export function Navbar(){
           <li><a href="/automation">Automation</a></li>
           <li><a href="/accessibility">Accessibility</a></li>
           <li>
-            <a href="/login" className="active login">
-              Login
-            </a>
+            {/* <a href="/login" className="active login">   Login
+            </a>*/}
+            
           </li>
         </ul>
       </nav>

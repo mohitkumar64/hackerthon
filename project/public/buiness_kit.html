@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Kit Form</title>
+
+<style>
+  body {
+    font-family: Arial;
+    padding: 20px;
+    background: #fafafa;
+  }
+  .container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 8px rgba(0,0,0,0.08);
+  }
+  input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: 1px solid #bbb;
+  }
+  button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background: #0077b6;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+</style>
+</head>
+
+<body>
+<div class="container">
+  <h2>Business Digital Kit Generator</h2>
+
+  <label>Business Name</label>
+  <input id="businessName" />
+
+  <label>Business Type</label>
+  <select id="businessType">
+    <option>Restaurant</option>
+    <option>Gym</option>
+    <option>Salon</option>
+    <option>Bakery</option>
+    <option>Clothing Store</option>
+    <option>Coaching Center</option>
+  </select>
+
+  <label>Main Color</label>
+  <input id="color" placeholder="e.g. Blue, Red, #ff9900" />
+
+  <label>Tagline (optional)</label>
+  <input id="tagline" placeholder="Your tagline here" />
+
+  <label>Style</label>
+  <select id="style">
+    <option>Modern</option>
+    <option>Minimal</option>
+    <option>Luxury</option>
+    <option>Playful</option>
+  </select>
+
+  <button id="generateBtn" onclick="submitData()">Generate Kit</button>
+</div>
+
+<script>
+  function submitData() {
+    const data = {
+      businessName: document.getElementById("businessName").value,
+      businessType: document.getElementById("businessType").value,
+      color: document.getElementById("color").value,
+      tagline: document.getElementById("tagline").value,
+      style: document.getElementById("style").value,
+    };
+
+    window.parent.postMessage(
+      {
+        type: "IFRAME_FORM_SUBMIT",
+        payload: { data, time: new Date().toISOString() },
+      },
+      "*"   
+    );
+  }
+</script>
+
+</body>
+</html>

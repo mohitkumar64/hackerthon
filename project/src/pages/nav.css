@@ -61,14 +61,14 @@
         align-items: center;
         gap: 12px;
         font-weight: 700;
-        font-size: 20px;
-        letter-spacing: 0.3px;
+        font-size: 2.5rem;
+        letter-spacng: 0.3px;
     }
-.logo-dot{
+/* .logo-dot{
   width:14px;height:14px;border-radius:4px;
   background:linear-gradient(135deg,var(--accent),var(--accent-2));
   box-shadow:0 0 10px #0077b6;
-}
+} */
 
     .logo .mark {
         width: 36px;
